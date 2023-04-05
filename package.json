@@ -1,6 +1,6 @@
 {
 	"name": "svelte-modal-basic",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"description": "Very simple modal that accept customizable svelte component",
 	"scripts": {
 		"dev": "vite dev",

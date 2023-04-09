@@ -49,11 +49,13 @@
     transition:fade    
 	>
   <div class={cx(component ? "":"bg-white p-2")} use:ClickOutside={() => showModal = false}>
-    {#if component}
-      <svelte:component this={component} on:close={() => showModal = false}/>
-    {:else}
-      <div>empty</div>
-    {/if}
+		<slot>
+			{#if component}
+				<svelte:component this={component} on:close={() => showModal = false}/>
+			{:else}
+				<div>empty</div>
+			{/if}
+		</slot>
   </div>
 	</div>
 {/if}

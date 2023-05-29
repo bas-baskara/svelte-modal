@@ -1,13 +1,12 @@
 <script lang="ts">
-	import ModalBasic from "$lib/ModalBasic.svelte";
+	import ModalBasic from '$lib/ModalBasic.svelte';
 
-  let showModal = false
+	let showModal = false;
 </script>
-
 
 <h1>Welcome to your library project</h1>
 <p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<button on:click={() => showModal = true} >showModal</button>
+<button on:click={() => (showModal = true)}>showModal</button>
 
-<ModalBasic bind:showModal component={null} />
+<ModalBasic bind:showModal component={null} closeClickOutside={false} />

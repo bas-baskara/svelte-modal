@@ -17,12 +17,12 @@ This is a very simple modal that accept customizable svelte component
   <button on:click={() => showModal = true}>Log in</button> //Setting showModal to true will open the modal
 
   <ModalBasic bind:showModal component={Login} />
-  // or 
+  // or
   <ModalBasic bind:showModal>
     <Login on:close={() => bindModal = false}/> //dispatching event close from component login
   </ModalBasic>
 
-  // When the backdrop is clicked, the modal will close by default. To disable that behavior, add the prop closeClickOutside set to false. 
+  // When the backdrop is clicked, the modal will close by default. To disable that behavior, add the prop closeClickOutside set to false.
   <ModalBasic bind:showModal component={Login} closeClickOutside={false} />
 
 

@@ -1,6 +1,6 @@
 {
 	"name": "svelte-modal-basic",
-	"version": "0.0.10",
+	"version": "0.0.11",
 	"description": "Very simple modal that accept customizable svelte component",
 	"scripts": {
 		"dev": "vite dev",
@@ -18,7 +18,8 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
 		}
 	},
 	"files": [

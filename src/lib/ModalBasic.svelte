@@ -1,45 +1,41 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
-	import { onMount, onDestroy } from 'svelte';
+	import { onMount, onDestroy, createEventDispatcher } from 'svelte';
 	import ClickOutside from 'click-outside-element';
-
 	export let showModal = false;
-	export let component: any | undefined = undefined;
+	export let component: ConstructorOfATypedSvelteComponent | null | undefined = undefined;
 	export let closeClickOutside = true;
+	export let center = true;
 
-	let theModal: HTMLElement | null, theModalParent: HTMLElement | null;
-
+	const dispatch = createEventDispatcher();
+	let theModal: HTMLElement, theModalParent: HTMLElement;
 	const moveModalToBody = () => {
 		if (theModal) {
 			document.body.appendChild(theModal);
 			document.body.classList.add('overflow-hidden');
 		}
 	};
-
 	const moveModalBack = () => {
 		if (theModal && theModalParent) {
 			theModalParent.appendChild(theModal);
 			document.body.classList.remove('overflow-hidden');
 		}
+		dispatch('close');
 	};
-
 	const clickOutSide = () => {
 		if (closeClickOutside) {
 			showModal = false;
 		}
 	};
-
 	onMount(() => {
-		theModal = document.getElementById('modal');
+		theModal = document.getElementById('modal') as HTMLElement;
 		if (theModal) {
-			theModalParent = theModal.parentElement;
+			theModalParent = theModal.parentElement as HTMLElement;
 		}
 	});
-
 	onDestroy(() => {
 		moveModalBack();
 	});
-
 	$: if (showModal) {
 		moveModalToBody();
 	} else {
@@ -50,7 +46,9 @@
 {#if showModal}
 	<div
 		id="modal"
-		class="fixed z-[100] bg-gray-500/75 inset-0 w-screen h-screen overflow-hidden grid place-content-center"
+		class="fixed z-[100] bg-gray-500/75 inset-0 w-screen h-screen overflow-hidden grid {center
+			? 'place-content-center'
+			: ''}"
 		transition:fade
 	>
 		<div use:ClickOutside={clickOutSide}>

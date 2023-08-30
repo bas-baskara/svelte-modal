@@ -19,12 +19,26 @@ This is a very simple modal that accept customizable svelte component
   <ModalBasic bind:showModal component={Login} />
   // or
   <ModalBasic bind:showModal>
-    <Login on:close={() => bindModal = false}/> //dispatching event close from component login
+    <Login on:close={() => bindModal = false} // dispatching event close from component login
+    />
   </ModalBasic>
 
-  // When the backdrop is clicked, the modal will close by default. To disable that behavior, add the prop closeClickOutside set to false.
-  <ModalBasic bind:showModal component={Login} closeClickOutside={false} />
+/*
+  The following code uses the ModalBasic component to display a modal dialog.
+  By default, clicking outside the modal's backdrop will close the modal.
+  To prevent this behavior, set the prop "closeClickOutside" to false.
 
+  Additionally, you can listen for the "close" event on the parent component
+  and handle it to close the modal. In this example, the "showModal" variable
+  is used to control the visibility of the modal.
+*/
+
+<ModalBasic
+  {showModal}          // A boolean variable controlling the modal's visibility
+  component={Login}    // The content component to be displayed inside the modal
+  closeClickOutside={false} // Prevent closing the modal by clicking outside
+  on:close={() => showModal = false} // Listen for the "close" event to hide the modal
+/>
 
 
 ```
